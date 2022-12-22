@@ -1,1 +1,4 @@
-const userAccounts = require('./userAccounts')
+const Users = require('./User');
+
+// Export models
+module.exports = { Users };
