@@ -17,7 +17,7 @@ function App() {
                 />
                 <Route 
                 path='/saved'
-                elements={<SearchMusic />}
+                elements={<SavedMusic />}
                 />
             </Routes>
             </>
