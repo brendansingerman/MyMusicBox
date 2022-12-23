@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 function App() {
     return (
         <Router>
+            <h1>hello</h1>
             <>
             <Navbar />
             <Routes>
