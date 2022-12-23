@@ -1,40 +1,60 @@
-const { Schema, model, Types } = require('mongoose');
+const { Schema, model } = require('mongoose');
+const bcrypt = require('bcrypt');
 
-const UserSchema = new Schema 
-(
-    {
-        username: {
-            type: String,
-            unique: true,
-            required: true,
-            trim: true,
-        },
-        email: {
-            type: String,
-            Required: true,
-            unique: true,
-            match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/]
-        },
-        thoughts: [{
-            type: Schema.Types.ObjectId,
-            ref: 'Thoughts'
-        }],
-        friends: [{
-            type: Schema.Types.ObjectId,
-            ref: 'Users',
-        }],
+// import schema from likedArtists.js
+const artistSchema = require('./likedArtists');
+
+// import schema from likedSongs.js
+const songSchema = require('./likedSongs');
+
+const userSchema = new Schema(
+  {
+    username: {
+      type: String,
+      required: true,
+      unique: true,
     },
-    {
-        toJSON: {
-            virtuals: true,
-        },
-        id: false,
-    }
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      match: [/.+@.+\..+/, 'Must use a valid email address'],
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    // set savedArtists to be an array of data that adheres to the artistSchema
+    savedArtists: [artistSchema],
+  },
+  // set this to use virtual below
+  {
+    toJSON: {
+      virtuals: true,
+    },
+  }
 );
 
-UserSchema.virtual('friendCount').get(function() {
-    return this.friends.length;
-});
-const Users = model('Users', UserSchema);
+// hash user password
+userSchema.pre('save', async function (next) {
+  if (this.isNew || this.isModified('password')) {
+    const saltRounds = 10;
+    this.password = await bcrypt.hash(this.password, saltRounds);
+  }
 
-module.exports = Users;
+  next();
+});
+
+// custom method to compare and validate password for logging in
+userSchema.methods.isCorrectPassword = async function (password) {
+  return bcrypt.compare(password, this.password);
+};
+
+// when we query a user, we'll also get another field called `artistCount` with the number of saved artists we have
+userSchema.virtual('artistCount').get(function () {
+  return this.savedArtists.length;
+});
+
+const User = model('User', userSchema);
+
+module.exports = User;
