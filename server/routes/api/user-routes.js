@@ -1,9 +1,5 @@
 const router = require('express').Router();
-<<<<<<< HEAD
-const withAuth = require('../../utils/auth');
 
-=======
->>>>>>> 255277c392d0af7ba1ac49a3ecec0f334f97ec6f
 const {
   createUser,
   getSingleUser,
