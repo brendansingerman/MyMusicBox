@@ -1,27 +1,22 @@
 const router = require('express').Router();
-
 const {
-    getUser,
-    getUsersById,
-    createUser,
-    updateUser,
-    deleteUser,
-    addFriend,
-    deleteFriend
+  createUser,
+  getSingleUser,
+  saveArtist,
+  deleteArtist,
+  login,
 } = require('../../controllers/user-controller');
 
-// /api/users GET all and POST 
-router.route('/').get(getUser).post(createUser);
+// import middleware
+const { authMiddleware } = require('../../utils/auth');
 
-// /api/users/:userId GET one user, PUT and DELETE by user's ID
-router.route('/:userId')
-.get(getUsersById)
-.put(updateUser)
-.delete(deleteUser);
+// put authMiddleware anywhere we need to send a token for verification of user
+router.route('/').post(createUser).put(authMiddleware, saveArtist);
 
-// /api/users/:userId/friends/:friendId POST and DELETE a friend by ID
-router.route('/:userId/friends/:friendId')
-.post(addFriend)
-.delete(deleteFriend);
+router.route('/login').post(login);
+
+router.route('/me').get(authMiddleware, getSingleUser);
+
+router.route('/artists/:artistId').delete(authMiddleware, deleteArtist);
 
 module.exports = router;
