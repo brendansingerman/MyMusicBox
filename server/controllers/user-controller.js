@@ -1,92 +1,73 @@
-const { Users, Thoughts } = require("../models");
+// import user model
+const { User } = require('../models');
+// import sign token function from auth
+const { signToken } = require('../utils/auth');
 
 module.exports = {
-  //Get all users
-  getUser(req, res) {
-    Users.find({})
-      .then((user) => res.json(user))
-      .catch((err) => res.status(500).json(err));
-  },
-   // Get single user by ID
-   getUsersById(req, res) {
-    Users.findOne({ _id: req.params.userId })
-    .select('-__v')
-    // return if no user is found 
-    .then(user => {
-        if(!user) {
-            res.status(404).json({message: 'No User with this ID'});
-            return; 
-        }
-        res.json(user)
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(400).json(err)
-    })
-},
+  // get a single user by either their id or their username
+  async getSingleUser({ user = null, params }, res) {
+    const foundUser = await User.findOne({
+      $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
+    });
 
-  //create a user
-  createUser(req, res) {
-    Users.create(req.body)
-      .then((user) => res.json(user))
-      .catch((err) => {
-        console.log(err);
-        return res.status(500).json(err);
-      });
+    if (!foundUser) {
+      return res.status(400).json({ message: 'Cannot find a user with this id!' });
+    }
+
+    res.json(foundUser);
   },
-  //update a user
-  updateUser(req, res) {
-    Users.findOneAndUpdate(
-      { _id: req.params.userId },
-      { $set: req.body },
-      { runValidators: true, new: true }
-    )
-      .then((user) =>
-        !user
-          ? res.status(404).json({ message: "No User with this ID" })
-          : res.json(user)
-      )
-      .catch((err) => res.status(500).json(err));
+  // create a user, sign a token, and send it back (to client/src/components/SignUpForm.js)
+  async createUser({ body }, res) {
+    const user = await User.create(body);
+
+    if (!user) {
+      return res.status(400).json({ message: 'Something is wrong!' });
+    }
+    const token = signToken(user);
+    res.json({ token, user });
   },
-  //delete a user
-  //BONUS: Remove a user's associated thoughts when deleted.
-  deleteUser(req, res) {
-    Users.findOneAndDelete({ _id: req.params.userId })
-      .then((user) =>
-        !user
-          ? res.status(404).json({ message: "No User with this ID" })
-          : Thoughts.deleteMany({ _id: { $in: user.thoughts } })
-      )
-      .then(() => res.json({ message: "User and Thought deleted!" }))
-      .catch((err) => res.status(500).json(err));
+  // login a user, sign a token, and send it back (to client/src/components/LoginForm.js)
+  // {body} is destructured req.body
+  async login({ body }, res) {
+    const user = await User.findOne({ $or: [{ username: body.username }, { email: body.email }] });
+    if (!user) {
+      return res.status(400).json({ message: "Can't find this user" });
+    }
+
+    const correctPw = await user.isCorrectPassword(body.password);
+
+    if (!correctPw) {
+      return res.status(400).json({ message: 'Wrong password!' });
+    }
+    const token = signToken(user);
+    res.json({ token, user });
   },
-  //add a friend
-  addFriend(req, res) {
-    Users.findOneAndUpdate(
-      { _id: req.params.userId },
-      { $addToSet: { friends: req.params.friendId } },
-      { runValidators: true, new: true }
-    )
-      .then((user) =>
-        !user
-          ? res.status(404).json({ message: "No User find with this ID!" })
-          : res.json(user)
-      )
-      .catch((err) => res.status(500).json(err));
+  // save an artist to a user's `savedArtists` field by adding it to the set (to prevent duplicates)
+  // user comes from `req.user` created in the auth middleware function
+  async saveArtist({ user, body }, res) {
+    console.log(user);
+    try {
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $addToSet: { savedArtists: body } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedUser);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
   },
-  //delete a friend
-  deleteFriend(req, res) {
-    Users.findOneAndUpdate(
-      { _id: req.params.userId },
-      { $pull: { friends: req.params.friendId } },
+  // remove an artist from `savedArtists`
+  async deleteArtist({ user, params }, res) {
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: user._id },
+      { $pull: { savedArtists: { artistId: params.artistId } } },
       { new: true }
-    )
-      .then(
-        (user) =>
-          !user
-            ? res.status(404).json({ message: "No User find with this ID!" })
-            : res.json(user)
-      )
-      .catch((err) => res.status(500).json(err));
+    );
+    if (!updatedUser) {
+      return res.status(404).json({ message: "Couldn't find user with this id!" });
+    }
+    return res.json(updatedUser);
   },
 };
