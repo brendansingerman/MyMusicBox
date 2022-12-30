@@ -10,12 +10,8 @@ const typeDefs = gql`
     likedArtists: [Artist]
   }
   type Artist {
-    bookId: String!
-    authors: [String]
-    description: String
-    title: String!
+    artistId: String!
     image: String
-    link: String
   }
   type Auth {
     token: ID!
@@ -23,9 +19,7 @@ const typeDefs = gql`
   }
   input ArtistInput {
     artistId: String!
-    description: String
     image: String
-    link: String
   }
   type Query {
     me: User
