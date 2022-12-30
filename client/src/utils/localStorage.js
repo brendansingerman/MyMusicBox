@@ -1,30 +1,30 @@
-export const getSavedMusicIds = () => {
-    const getSavedMusicIds = localStorage.getItem('saved_music')
-    ? JSON.parse(localStorage.getItem('saved_music'))
-    : [];
-
-    return getSavedMusicIds
-};
-
-export const saveMusicIds = (musicIdArr) => {
-    if (musicIdArr.length) {
-        localStorage.setItem('saved_music', JSON.stringify(musicIdArr));
+export const getSavedArtistIds = () => {
+    const savedArtistIds = localStorage.getItem('saved_artist')
+      ? JSON.parse(localStorage.getItem('saved_artist'))
+      : [];
+  
+    return savedArtistIds;
+  };
+  
+  export const saveArtistIds = (artistIdArr) => {
+    if (artistIdArr.length) {
+      localStorage.setItem('saved_artists', JSON.stringify(artistIdArr));
     } else {
-        localStorage.removeItem('saved_music')
+      localStorage.removeItem('saved_artists');
     }
-};
-
-export const removeMusicId = (musicId) => {
-    const savedMusicIds = localStorage.setItem('saved_music')
-    ? JSON.parse(localStorage.getItem('saved_music'))
-    : null;
-
-    if (!savedMusicIds) {
-        return false;
+  };
+  
+  export const removeArtistId = (artistId) => {
+    const savedArtistIds = localStorage.getItem('saved_artists')
+      ? JSON.parse(localStorage.getItem('saved_artists'))
+      : null;
+  
+    if (!savedArtistIds) {
+      return false;
     }
-
-    const updatedSavedMusicIds = savedMusicIds?.filter((savedMusicIds) => savedMusicIds !== musicId);
-    localStorage.setItem('saved_music', JSON.stringify(updatedSavedMusicIds));
-
+  
+    const updatedSavedArtistIds = savedArtistIds?.filter((savedArtistId) => savedArtistId !== artistId);
+    localStorage.setItem('saved_artists', JSON.stringify(updatedSavedArtistIds));
+  
     return true;
-}
+  };

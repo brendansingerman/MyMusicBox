@@ -27,17 +27,13 @@ export const ADD_USER = gql`
 
 export const LIKE_ARTIST = gql`
   mutation likeArtist($input: ArtistInput) {
-    saveBook(input: $input) {
+    likeArtist(input: $input) {
       _id
       username
-      bookCount
-      savedBooks {
-        bookId
-        authors
+      artistCount
+      savedArtists {
+        artistId
         image
-        link
-        title
-        description
       }
     }
   }
@@ -52,8 +48,6 @@ export const REMOVE_ARTIST = gql`
       likedArtists {
         artistId
         image
-        link
-        description
       }
     }
   }
