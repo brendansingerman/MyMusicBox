@@ -5,7 +5,7 @@ import { saveArtistIds, getSavedArtistIds } from '../utils/localStorage';
 // import Apollo hook and mutation
 import { LIKE_ARTIST } from "../utils/mutations";
 import { useMutation } from "@apollo/react-hooks";
-
+//book
 const SearchArtists = () => {
   // create state for holding returned genius api data
   const [searchedArtists, setSearchedArtists] = useState([]);
@@ -46,8 +46,8 @@ const SearchArtists = () => {
       // info from genius API
       const artistData = items.map((artist) => ({
         artistId: artist.id,
-        name: artist_names,
-        image: header_image_thumbnail_url || "",
+        // name: artist_names,
+        // image: header_image_thumbnail_url || "",
       }));
 
       setSearchedArtists(artistData);
@@ -134,15 +134,15 @@ const SearchArtists = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>{artist.name}</Card.Title>
-                  <p className="small">Authors: {book.authors}</p>
-                  <Card.Text>{book.description}</Card.Text>
+                  <p className="small">Name: {artist.name}</p>
+                  <Card.Text>{artist.name}</Card.Text>
                   {Auth.loggedIn() && (
                     <Button
                       disabled={savedArtistIds?.some(
                         (savedArtistId) => savedArtistId === artist.artistId
                       )}
                       className="btn-block btn-info"
-                      onClick={() => handleSaveBook(artist.artistId)}
+                      onClick={() => handleLikeArtist(artist.artistId)}
                     >
                       {savedArtistIds?.some(
                         (savedArtistId) => savedArtistId === artist.artistId
