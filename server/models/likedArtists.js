@@ -19,10 +19,7 @@ const artistSchema = new Schema({
   image: {
     type: String,
   },
-  link: {
-    type: String,
-  },
-  title: {
+  name: {
     type: String,
     required: true,
   },

@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const artistSchema = require('./likedArtists');
 
 // import schema from likedSongs.js
-const songSchema = require('./likedSongs');
+// const songSchema = require('./likedSongs');
 
 const userSchema = new Schema(
   {

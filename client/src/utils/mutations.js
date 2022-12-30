@@ -34,6 +34,7 @@ export const LIKE_ARTIST = gql`
       savedArtists {
         artistId
         image
+        name
       }
     }
   }
@@ -48,6 +49,7 @@ export const REMOVE_ARTIST = gql`
       likedArtists {
         artistId
         image
+        name
       }
     }
   }
