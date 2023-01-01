@@ -5,7 +5,9 @@ import { saveArtistIds, getSavedArtistIds } from '../utils/localStorage';
 // import Apollo hook and mutation
 import { LIKE_ARTIST } from "../utils/mutations";
 import { useMutation } from "@apollo/react-hooks";
-//book
+
+
+
 const SearchArtists = () => {
   // create state for holding returned genius api data
   const [searchedArtists, setSearchedArtists] = useState([]);
@@ -31,24 +33,33 @@ const SearchArtists = () => {
     }
 
     try {
+     
       const response = await fetch(
-        // genius api here 
-        `api.genius.com/search?q=${searchInput}`
-      );
+        `https://api.genius.com/search?q=${searchInput}&access_token=NBrEuSGBuBbw9-HuGItPRR-WS92QMzJB4nMXgsNSeayx4jywgFkWBxiIhJd3m_PQ`
+      )
+        
+      //testing
+      console.log(response);
 
       if (!response.ok) {
         throw new Error("something went wrong!");
       }
 
-      const { items } = await response.json();
-
+      const { ...meta } = await response.json();
+      //testing
+      console.log(meta);
 
       // info from genius API
-      const artistData = items.map((artist) => ({
+      const artistData = meta.response.hits.map((artist) => ({
         artistId: artist.id,
-        // name: artist_names,
-        // image: header_image_thumbnail_url || "",
+        name: artist.result.artist_names,
+        image: artist.result.header_image_thumbnail_url || "",
       }));
+      //testing
+      console.log(response.hits);
+
+      // //testing
+      // console.log(artistData);
 
       setSearchedArtists(artistData);
       setSearchInput("");
