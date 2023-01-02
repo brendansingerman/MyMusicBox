@@ -10,7 +10,11 @@ const typeDefs = gql`
     likedArtists: [Artist]
   }
   type Artist {
-    artistId: String!
+    artistId: Int
+    name: String
+    song: String
+    year: Int
+    sample: String
     image: String
   }
   type Auth {
@@ -18,7 +22,11 @@ const typeDefs = gql`
     user: User
   }
   input ArtistInput {
-    artistId: String!
+    artistId: Int
+    name: String
+    song: String
+    year: Int
+    sample: String
     image: String
   }
   type Query {
@@ -28,7 +36,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     likeArtist(input: ArtistInput): User
-    removeArtist(artistId: String!): User
+    removeArtist(artistId: Int): User
   }
 `;
 

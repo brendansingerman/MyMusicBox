@@ -6,7 +6,7 @@ import { saveArtistIds, getSavedArtistIds } from '../utils/localStorage';
 import { LIKE_ARTIST } from "../utils/mutations";
 import { useMutation } from "@apollo/react-hooks";
 
-require('dotenv')
+// require('dotenv')
 
 
 
@@ -53,7 +53,7 @@ const SearchArtists = () => {
 
       // info from genius API
       const artistData = meta.response.hits.map((artist) => ({
-        artistId: artist.id,
+        artistId: artist.result.id,
         name: artist.result.artist_names,
         song: artist.result.title,
         year: artist.result.release_date_components.year,
@@ -61,8 +61,6 @@ const SearchArtists = () => {
         image: artist.result.header_image_thumbnail_url || "",
 
       }));
-      //testing
-      console.log(meta.response.hits);
 
       setSearchedArtists(artistData);
       setSearchInput("");
@@ -73,10 +71,9 @@ const SearchArtists = () => {
 
   // create function to handle liking an artist to our database
   const handleLikeArtist = async (artistId) => {
-    // find the book in `searchedArtists` state by the matching id
+    // find the song in `searchedArtists` state by the matching id
     const artistToLike = searchedArtists.find((artist) => artist.artistId === artistId);
-
-    // get token
+    
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -164,8 +161,8 @@ const SearchArtists = () => {
                       {savedArtistIds?.some(
                         (savedArtistId) => savedArtistId === artist.artistId
                       )
-                        ? "This artist has already been liked!"
-                        : "Like this Artist!"}
+                        ? "This song has already been liked!"
+                        : "Like this Song!"}
                     </Button>
                   )}
                 </Card.Body>

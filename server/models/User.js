@@ -24,8 +24,8 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    // set savedArtists to be an array of data that adheres to the artistSchema
-    savedArtists: [artistSchema],
+    // set likedArtists to be an array of data that adheres to the artistSchema
+    likedArtists: [artistSchema],
   },
   // set this to use virtual below
   {
@@ -50,9 +50,9 @@ userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-// when we query a user, we'll also get another field called `artistCount` with the number of saved artists we have
+// when we query a user, we'll also get another field called `artistCount` with the number of saved songs we have
 userSchema.virtual('artistCount').get(function () {
-  return this.savedArtists.length;
+  return this.likedArtists.length;
 });
 
 const User = model('User', userSchema);

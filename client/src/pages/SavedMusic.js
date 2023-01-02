@@ -47,14 +47,14 @@ const SavedArtists = () => {
       </Jumbotron>
       <Container>
         <h2>
-          {userData.savedArtists?.length
-            ? `Viewing ${userData.savedArtists.length} saved ${
-                userData.savedArtists.length === 1 ? 'artist' : 'artists'
+          {userData.likedArtists?.length
+            ? `Viewing ${userData.likedArtists.length} saved ${
+                userData.likedArtists.length === 1 ? 'artist' : 'artists'
               }:`
             : 'You have no liked music!'}
         </h2>
         <CardColumns>
-          {userData.savedArtists?.map((artist) => {
+          {userData.likedArtists?.map((artist) => {
             return (
               <Card key={artist.artistId} border='dark'>
                 {artist.image ? (
@@ -62,12 +62,12 @@ const SavedArtists = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>{artist.name}</Card.Title>
-                  <p className='small'>Authors: {artist.name}</p>
-                  <Card.Text>{artist.name}</Card.Text>
+                  <p className='small'>{artist.song}</p>
+                  <Card.Text>{artist.year}</Card.Text>
                   <Button
                     className='btn-block btn-danger'
                     onClick={() => handleDeleteArtist(artist.artistId)}>
-                    Delete this Artist!
+                    Remove this Song!
                   </Button>
                   {error && <span className="ml-2">Something went wrong...</span>}
                 </Card.Body>
