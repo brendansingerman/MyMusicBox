@@ -34,6 +34,7 @@ const resolvers = {
       return { token, user };
     },
     addUser: async (parent, args) => {
+      //todo: fix create error... create is undefined for some
       const user = await User.create(args);
       const token = signToken(user);
 

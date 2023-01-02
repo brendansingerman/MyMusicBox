@@ -6,6 +6,8 @@ import { saveArtistIds, getSavedArtistIds } from '../utils/localStorage';
 import { LIKE_ARTIST } from "../utils/mutations";
 import { useMutation } from "@apollo/react-hooks";
 
+require('dotenv')
+
 
 
 const SearchArtists = () => {
@@ -53,13 +55,14 @@ const SearchArtists = () => {
       const artistData = meta.response.hits.map((artist) => ({
         artistId: artist.id,
         name: artist.result.artist_names,
+        song: artist.result.title,
+        year: artist.result.release_date_components.year,
+        sample: artist.result.url,
         image: artist.result.header_image_thumbnail_url || "",
+
       }));
       //testing
-      console.log(response.hits);
-
-      // //testing
-      // console.log(artistData);
+      console.log(meta.response.hits);
 
       setSearchedArtists(artistData);
       setSearchInput("");
@@ -127,10 +130,12 @@ const SearchArtists = () => {
 
       <Container>
         <h2>
+       
           {searchedArtists
           .length
-            ? `Viewing ${searchedArtists.length} results:`
+            ? `Viewing top ${searchedArtists.length} results:`
             : "Search for an artist to begin"}
+          
         </h2>
         <CardColumns>
           {searchedArtists.map((artist) => {
@@ -145,8 +150,9 @@ const SearchArtists = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>{artist.name}</Card.Title>
-                  <p className="small">Name: {artist.name}</p>
-                  <Card.Text>{artist.name}</Card.Text>
+                  <Card.Text>{artist.song}</Card.Text>
+                  <Card.Text>{artist.year}</Card.Text>
+                  <p className="small"><a href={artist.sample} target="_blank" rel="noreferrer">See lyrics on Genius</a></p>
                   {Auth.loggedIn() && (
                     <Button
                       disabled={savedArtistIds?.some(
