@@ -31,25 +31,31 @@ export const LIKE_ARTIST = gql`
       _id
       username
       artistCount
-      savedArtists {
+      likedArtists {
         artistId
-        image
         name
+        song
+        year
+        sample
+        image
       }
     }
   }
 `;
 
 export const REMOVE_ARTIST = gql`
-  mutation removeArtist($artistId: String!) {
+  mutation removeArtist($artistId: Int) {
     removeArtist(artistId: $artistId) {
       _id
       username
       artistCount
       likedArtists {
         artistId
-        image
         name
+        song
+        year
+        sample
+        image
       }
     }
   }

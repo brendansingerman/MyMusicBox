@@ -8,6 +8,10 @@ export const GET_ME = gql`
       email
       likedArtists {
         artistId
+        name
+        song
+        year
+        sample
         image
       }
     }
