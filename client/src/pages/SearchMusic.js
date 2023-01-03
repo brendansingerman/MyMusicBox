@@ -6,7 +6,7 @@ import { saveArtistIds, getSavedArtistIds } from '../utils/localStorage';
 import { LIKE_ARTIST } from "../utils/mutations";
 import { useMutation } from "@apollo/react-hooks";
 
-// require('dotenv')
+require('dotenv').config();
 
 
 
@@ -41,7 +41,9 @@ const SearchArtists = () => {
       )
         
       //testing
-      console.log(response);
+      //
+      //
+      //console.log(process.env.GENIUS_API_KEY);
 
       if (!response.ok) {
         throw new Error("something went wrong!");
@@ -161,7 +163,7 @@ const SearchArtists = () => {
                       {savedArtistIds?.some(
                         (savedArtistId) => savedArtistId === artist.artistId
                       )
-                        ? "This song has already been liked!"
+                        ? "Song liked!"
                         : "Like this Song!"}
                     </Button>
                   )}
