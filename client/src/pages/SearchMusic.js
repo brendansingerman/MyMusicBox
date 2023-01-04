@@ -167,7 +167,7 @@ const SearchArtists = () => {
           })}
         </CardColumns>
       </div>
-    </>c
+    </>
   );
 };
 
