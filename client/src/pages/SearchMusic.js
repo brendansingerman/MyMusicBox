@@ -98,13 +98,12 @@ const SearchArtists = () => {
 
   return (
     <>
-      <Jumbotron fluid className="text-light bg-dark">
-        <Container>
-          <h1>Search for Music!</h1>
-          <Form onSubmit={handleFormSubmit}>
-            <Form.Row>
-              <Col xs={12} md={8}>
-                <Form.Control
+      <div className="py-8 px-4 md:py-16 md:px-8 mb-8 bg-gray-200 rounded pr-0 pl-0 rounded-none backGround-color text-light">
+        <div className='container mx-auto sm:px-4'>
+          <h1 className='text-4xl'>Search for Music!</h1>
+          <form className='mb-4 flex flex-wrap' onSubmit={handleFormSubmit}>
+              <div className='relative flex-grow max-w-full flex-1'>
+                <input className='w-full rounded-lg h-full px-3 text-dark'
                   name="searchInput"
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
@@ -112,18 +111,17 @@ const SearchArtists = () => {
                   size="lg"
                   placeholder="Search an artist"
                 />
-              </Col>
-              <Col xs={12} md={4}>
-                <Button type="submit" variant="success" size="lg">
+              </div>
+              <div className='relative flex-grow max-w-full flex-1 px-4'>
+                <button className='inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded  no-underline bg-green-500 text-white hover:green-600 py-3 px-4 leading-tight text-xl' type="submit" variant="success" size="lg">
                   Submit Search
-                </Button>
-              </Col>
-            </Form.Row>
-          </Form>
-        </Container>
-      </Jumbotron>
+                </button>
+              </div>
+          </form>
+        </div>
+      </div>
 
-      <Container>
+      <div className='container mx-auto sm:px-4'>
         <h2>
        
           {searchedArtists
@@ -168,7 +166,7 @@ const SearchArtists = () => {
             );
           })}
         </CardColumns>
-      </Container>
+      </div>
     </>
   );
 };
