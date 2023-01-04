@@ -6,8 +6,8 @@ import { saveArtistIds, getSavedArtistIds } from '../utils/localStorage';
 import { LIKE_ARTIST } from "../utils/mutations";
 import { useMutation } from "@apollo/react-hooks";
 
-// require('dotenv')
-
+require('dotenv').config();
+const apiKey = process.env.REACT_APP_APIKEY;
 
 
 const SearchArtists = () => {
@@ -37,11 +37,9 @@ const SearchArtists = () => {
     try {
      
       const response = await fetch(
-        `https://api.genius.com/search?q=${searchInput}&access_token=NBrEuSGBuBbw9-HuGItPRR-WS92QMzJB4nMXgsNSeayx4jywgFkWBxiIhJd3m_PQ`
+        `https://api.genius.com/search?q=${searchInput}&access_token=${apiKey}`
       )
         
-      //testing
-      console.log(response);
 
       if (!response.ok) {
         throw new Error("something went wrong!");
@@ -161,7 +159,7 @@ const SearchArtists = () => {
                       {savedArtistIds?.some(
                         (savedArtistId) => savedArtistId === artist.artistId
                       )
-                        ? "This song has already been liked!"
+                        ? "Song liked!"
                         : "Like this Song!"}
                     </Button>
                   )}

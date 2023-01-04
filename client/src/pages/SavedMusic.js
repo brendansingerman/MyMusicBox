@@ -38,6 +38,8 @@ const SavedArtists = () => {
     return <h2>LOADING...</h2>;
   }
 
+
+
   return (
     <>
       <Jumbotron fluid className='text-light bg-dark'>
@@ -70,6 +72,8 @@ const SavedArtists = () => {
                     Remove this Song!
                   </Button>
                   {error && <span className="ml-2">Something went wrong...</span>}
+                  <Button
+                  className='btn-block'>comment</Button>
                 </Card.Body>
               </Card>
             );
