@@ -69,5 +69,41 @@ const Comment = ({
             >
               Edit
             </div>
+            )}
+            {canDelete && (
+              <div
+                className="comment-action"
+                onClick={() => deleteComment(comment.id)}
+              >
+                Delete
+              </div>
+            )}
+            </div>
+        {isReplying && (
+          <CommentForm
+            submitLabel="Reply"
+            handleSubmit={(text) => addComment(text, replyId)}
+          />
+        )}
+        {replies.length > 0 && (
+          <div className="replies">
+            {replies.map((reply) => (
+              <Comment
+                comment={reply}
+                key={reply.id}
+                setActiveComment={setActiveComment}
+                activeComment={activeComment}
+                updateComment={updateComment}
+                deleteComment={deleteComment}
+                addComment={addComment}
+                parentId={comment.id}
+                replies={[]}
+                currentUserId={currentUserId}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
   )
 }
