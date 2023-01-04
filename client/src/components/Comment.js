@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const commentForm = ({
+const CommentForm = ({
     handleSubmit,
     submitLabel,
     hasCancelButton = false,
@@ -18,7 +18,25 @@ const commentForm = ({
 
     return (
         <form onSubmit={onSubmit}>
-            
+             <textarea
+        className="comment-form-textarea"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+      <button className="comment-form-button" disabled={isTextareaDisabled}>
+        {submitted}
+      </button>
+      {hasCancelButton && (
+        <button
+          type="button"
+          className="comment-form-button comment-form-cancel-button"
+          onClick={handleCancel}
+        >
+          Cancel
+        </button>
+      )}
         </form>
-    )
-}
+    );
+};
+
+export default CommentForm
