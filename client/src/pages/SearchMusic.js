@@ -100,9 +100,9 @@ const SearchArtists = () => {
 
   return (
     <>
-      <Jumbotron fluid className="text-light bg-dark">
-        <Container>
-          <h1>Search for Music!</h1>
+      <div className="py-8 px-4 md:py-16 md:px-8 mb-8 bg-gray-200 rounded pr-0 pl-0 rounded-none backGround-color text-light">
+        <div className='container mx-auto sm:px-4'>
+          <h1 className='text-4xl'>Search for Music!</h1>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
               <Col xs={12} md={8}>
@@ -122,10 +122,10 @@ const SearchArtists = () => {
               </Col>
             </Form.Row>
           </Form>
-        </Container>
-      </Jumbotron>
+        </div>
+      </div>
 
-      <Container>
+      <div className='container mx-auto sm:px-4'>
         <h2>
        
           {searchedArtists
@@ -170,7 +170,7 @@ const SearchArtists = () => {
             );
           })}
         </CardColumns>
-      </Container>
+      </div>
     </>
   );
 };

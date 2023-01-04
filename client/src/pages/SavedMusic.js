@@ -81,4 +81,3 @@ const SavedArtists = () => {
 };
 
 export default SavedArtists;
-
