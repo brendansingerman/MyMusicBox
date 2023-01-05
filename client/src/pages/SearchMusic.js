@@ -97,82 +97,8 @@ const SearchArtists = () => {
   };
 
   return (
-    // Originally with Bootstrap
-    // <>
-    //   <Jumbotron fluid className="text-light bg-dark">
-    //     <Container>
-    //       <h1>Search for Music!</h1>
-    //       <Form onSubmit={handleFormSubmit}>
-    //         <Form.Row>
-    //           <Col xs={12} md={8}>
-    //             <Form.Control
-    //               name="searchInput"
-    //               value={searchInput}
-    //               onChange={(e) => setSearchInput(e.target.value)}
-    //               type="text"
-    //               size="lg"
-    //               placeholder="Search an artist"
-    //             />
-    //           </Col>
-    //           <Col xs={12} md={4}>
-    //             <Button type="submit" variant="success" size="lg">
-    //               Submit Search
-    //             </Button>
-    //           </Col>
-    //         </Form.Row>
-    //       </Form>
-    //     </Container>
-    //   </Jumbotron>
-
-    //   <Container>
-    //     <h2>
-       
-    //       {searchedArtists
-    //       .length
-    //         ? `Viewing top ${searchedArtists.length} results:`
-    //         : "Search for an artist to begin"}
-          
-    //     </h2>
-    //     <CardColumns>
-    //       {searchedArtists.map((artist) => {
-    //         return (
-    //           <Card key={artist.artistId} border="dark">
-    //             {artist.image ? (
-    //               <Card.Img
-    //                 src={artist.image}
-    //                 alt={`The image for ${artist}`}
-    //                 variant="top"
-    //               />
-    //             ) : null}
-    //             <Card.Body>
-    //               <Card.Title>{artist.name}</Card.Title>
-    //               <Card.Text>{artist.song}</Card.Text>
-    //               <Card.Text>{artist.year}</Card.Text>
-    //               <p className="small"><a href={artist.sample} target="_blank" rel="noreferrer">See lyrics on Genius</a></p>
-    //               {Auth.loggedIn() && (
-    //                 <Button
-    //                   disabled={savedArtistIds?.some(
-    //                     (savedArtistId) => savedArtistId === artist.artistId
-    //                   )}
-    //                   className="btn-block btn-info"
-    //                   onClick={() => handleLikeArtist(artist.artistId)}
-    //                 >
-    //                   {savedArtistIds?.some(
-    //                     (savedArtistId) => savedArtistId === artist.artistId
-    //                   )
-    //                     ? "Song liked!"
-    //                     : "Like this Song!"}
-    //                 </Button>
-    //               )}
-    //             </Card.Body>
-    //           </Card>
-    //         );
-    //       })}
-    //     </CardColumns>
-    //   </Container>
-    // </>
-    // Convert to Tailwind
     <>
+    {/* ----------------------------------------------------------------------SEARCH FOR MUSIC HERE -------------------------------------------------------------------- */}
       {/* Tailwind version of bootstrap jumbotron */}
       <div className="py-8 px-4 md:py-16 md:px-8 mb-8 bg-gray-200 rounded pr-0 pl-0 rounded-none backGround-color text-light">
         {/* Bootstrap Container to tailwind */}
@@ -190,6 +116,36 @@ const SearchArtists = () => {
                   type="text"
                   size="lg"
                   placeholder="Search an artist"
+                />
+              </div>
+              {/* Col from bootstap to tailwind */}
+              <div className='relative flex-grow max-w-full flex-1 px-4'>
+                {/* Button from bootstrap to tailwind */}
+                <button className='inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded  no-underline bg-green-500 text-white hover:green-600 py-3 px-4 leading-tight text-xl' type="submit" variant="success" size="lg">
+                  Submit Search
+                </button>
+              </div>
+          </form>
+        </div>
+      </div>
+{/* ----------------------------------------------------------------------SEARCH FOR USER ACCOUNT HERE -------------------------------------------------------------------- */}
+      {/* Tailwind version of bootstrap jumbotron */}
+      <div className="py-8 px-4 md:py-16 md:px-8 mb-8 bg-gray-200 rounded pr-0 pl-0 rounded-none backGround-color text-light">
+        {/* Bootstrap Container to tailwind */}
+        <div className='container mx-auto sm:px-4'>
+          <h1 className='text-4xl'>Search a user's account!</h1>
+          {/* Form from bootstrap to tailwind */}
+          <form className='mb-4 flex flex-wrap' onSubmit={handleFormSubmit}>
+              {/* Form.Row with Col from bootstrap to tailwind */}
+              <div className='relative flex-grow max-w-full flex-1'>
+                {/* Form.Control from bootstrap to tailwind */}
+                <input className='w-full rounded-lg h-full px-3 text-dark'
+                  name="searchAccount"
+                  value={""}
+                  onChange={(e) => setSearchInput(e.target.value)}
+                  type="text"
+                  size="lg"
+                  placeholder="Search a username"
                 />
               </div>
               {/* Col from bootstap to tailwind */}
