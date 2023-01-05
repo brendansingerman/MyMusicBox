@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import { Button, Card, CardColumns } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { saveArtistIds, getSavedArtistIds } from '../utils/localStorage';
 // import Apollo hook and mutation
 import { LIKE_ARTIST } from "../utils/mutations";
 import { useMutation } from "@apollo/react-hooks";
+// import mongodb
+// const MongoClient = require('mongodb').MongoClient;
+// const url = "mongodb://localhost:27017/";
 
 require('dotenv').config();
 const apiKey = process.env.REACT_APP_APIKEY;
@@ -37,7 +40,7 @@ const SearchArtists = () => {
     try {
      
       const response = await fetch(
-        `https://api.genius.com/search?q=${searchInput}&access_token=${apiKey}`
+        `https://api.genius.com/search?per_page=20&q=${searchInput}&access_token=${apiKey}`
       )
         
 
@@ -96,8 +99,32 @@ const SearchArtists = () => {
     }
   };
 
+//   const SearchAccounts = () => {
+//     // create state for holding returned genius api data
+//     const [searchedAccounts, setSearchedAccounts] = useState([]);
+//     // create state for holding our search field data
+//     const [searchAccountInput, setSearchAccountInput] = useState("");
+//     if (!searchAccountInput) {
+//       return false;
+//     }
+//     try {
+     
+//       const response = fetch(
+//         // `https://api.genius.com/search?per_page=20&page=6&q=${searchInput}&access_token=${apiKey}`
+//       )
+        
+
+//       if (!response.ok) {
+//         throw new Error("something went wrong!");
+//       }
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
+
   return (
     <>
+    {/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SEARCH FOR MUSIC HERE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
       <div className="py-8 px-4 md:py-16 md:px-8 mb-8 bg-gray-200 rounded pr-0 pl-0 rounded-none backGround-color text-light">
         <div className='container mx-auto sm:px-4'>
           <h1 className='text-4xl'>Search for Music!</h1>
@@ -120,6 +147,34 @@ const SearchArtists = () => {
           </form>
         </div>
       </div>
+
+
+      {/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SEARCH FOR USER ACCOUNT HERE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
+
+      {/* <div className="py-8 px-4 md:py-16 md:px-8 mb-8 bg-gray-200 rounded pr-0 pl-0 rounded-none backGround-color text-light">
+        <div className='container mx-auto sm:px-4'>
+          <h1 className='text-4xl'>Search a user's account here!</h1>
+          <form className='mb-4 flex flex-wrap' onSubmit={handleFormSubmit}>
+              <div className='relative flex-grow max-w-full flex-1'>
+                <input className='w-full rounded-lg h-full px-3 text-dark'
+                  name="searchInput"
+                  value={searchInput}
+                  onChange={(e) => setSearchAccountInput(e.target.value)}
+                  type="text"
+                  size="lg"
+                  placeholder="Search an account"
+                />
+              </div>
+              <div className='relative flex-grow max-w-full flex-1 px-4'>
+                <button className='inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded  no-underline bg-green-500 text-white hover:green-600 py-3 px-4 leading-tight text-xl' type="submit" variant="success" size="lg">
+                  Submit Search
+                </button>
+              </div>
+          </form>
+        </div>
+      </div> */}
+
+      {/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! MUSIC RESULTS HERE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
 
       <div className='container mx-auto sm:px-4'>
         <h2>
