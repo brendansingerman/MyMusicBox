@@ -3,8 +3,8 @@
   [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 
   ## Screenshots
-  ![Homepage of Web Application](./assets/Home-Search.png)
-  ![User's Saved Music Page](./assets/Saved-Music.png)
+  ![Homepage of Web Application](./assets/Homepage-Search.png)
+  ![User's Saved Music Page](./assets/Saved-Users-Music.png)
 
   ## Description
   This app utilizes the Genius API to search songs that a user can like and add to their liked music page.
