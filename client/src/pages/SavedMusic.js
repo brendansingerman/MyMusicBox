@@ -1,5 +1,5 @@
 import React from 'react';
-import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
+// import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
 import { REMOVE_ARTIST } from '../utils/mutations';
@@ -41,13 +41,58 @@ const SavedArtists = () => {
 
 
   return (
+    // Orginally with Bootstrap
+    // <>
+    //   <Jumbotron fluid className='text-light bg-dark'>
+    //     <Container>
+    //       <h1>Viewing {userData.username}'s artists!</h1>
+    //     </Container>
+    //   </Jumbotron>
+    //   <Container>
+    //     <h2>
+    //       {userData.likedArtists?.length
+    //         ? `Viewing ${userData.likedArtists.length} saved ${
+    //             userData.likedArtists.length === 1 ? 'artist' : 'artists'
+    //           }:`
+    //         : 'You have no liked music!'}
+    //     </h2>
+    //     <CardColumns>
+    //       {userData.likedArtists?.map((artist) => {
+    //         return (
+    //           <Card key={artist.artistId} border='dark'>
+    //             {artist.image ? (
+    //               <Card.Img src={artist.image} alt={`The name for ${artist.name}`} variant='top' />
+    //             ) : null}
+    //             <Card.Body>
+    //               <Card.Title>{artist.name}</Card.Title>
+    //               <p className='small'>{artist.song}</p>
+    //               <Card.Text>{artist.year}</Card.Text>
+    //               <Button
+    //                 className='btn-block btn-danger'
+    //                 onClick={() => handleDeleteArtist(artist.artistId)}>
+    //                 Remove this Song!
+    //               </Button>
+    //               {error && <span className="ml-2">Something went wrong...</span>}
+    //               <Button
+    //               className='btn-block'>comment</Button>
+    //             </Card.Body>
+    //           </Card>
+    //         );
+    //       })}
+    //     </CardColumns>
+    //   </Container>
+    // </>
+    // Convert to Tailwind
     <>
-      <Jumbotron fluid className='text-light bg-dark'>
-        <Container>
+      {/* Jumbotron from bootstrap to tailwind */}
+      <div className="py-8 px-4 md:py-16 md:px-8 mb-8 bg-gray-200 rounded pr-0 pl-0 rounded-none backGround-color text-light">
+        {/* Container from bootstrap to tailwind */}
+        <div className='container mx-auto sm:px-4'>
           <h1>Viewing {userData.username}'s artists!</h1>
-        </Container>
-      </Jumbotron>
-      <Container>
+        </div>
+      </div>
+      {/* Container from bootstrap to tailwind */}
+      <div className='container mx-auto sm:px-4'>
         <h2>
           {userData.likedArtists?.length
             ? `Viewing ${userData.likedArtists.length} saved ${
@@ -55,31 +100,42 @@ const SavedArtists = () => {
               }:`
             : 'You have no liked music!'}
         </h2>
-        <CardColumns>
-          {userData.likedArtists?.map((artist) => {
-            return (
-              <Card key={artist.artistId} border='dark'>
-                {artist.image ? (
-                  <Card.Img src={artist.image} alt={`The name for ${artist.name}`} variant='top' />
-                ) : null}
-                <Card.Body>
-                  <Card.Title>{artist.name}</Card.Title>
-                  <p className='small'>{artist.song}</p>
-                  <Card.Text>{artist.year}</Card.Text>
-                  <Button
-                    className='btn-block btn-danger'
-                    onClick={() => handleDeleteArtist(artist.artistId)}>
-                    Remove this Song!
-                  </Button>
-                  {error && <span className="ml-2">Something went wrong...</span>}
-                  <Button
-                  className='btn-block'>comment</Button>
-                </Card.Body>
-              </Card>
-            );
-          })}
-        </CardColumns>
-      </Container>
+        {/* CardColumns from bootstrap to tailwind */}
+        <div className='flex flex-wrap'>
+          {/* Card Col from bootstrap to tailwind */}
+          <div className='sm:w-1/2 pr-4 pl-4'>
+            {userData.likedArtists?.map((artist) => {
+              return (
+                // Card from bootstrap to tailwind
+                <div className='relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-gray-300' key={artist.artistId}>
+                  {artist.image ? (
+                    // Card.Img from bootstrap to tailwind
+                    <div className='max-w-full h-auto' src={artist.image} alt={`The name for ${artist.name}`} variant='top'> </div>
+                  ) : null}
+                  {/* Card.Body from bootstrap to tailwind */}
+                  <div className='flex-auto p-6'>
+                    {/* Card.Title from bootstrap to tailwind */}
+                    <div className='mb-3'>{artist.name}</div>
+                    <p className='small'>{artist.song}</p>
+                    {/* Card.Text from bootstrap to tailwind */}
+                    <div className='mb-0'>{artist.year}</div>
+                    {/* Button from bootstrap to tailwind */}
+                    <button
+                      className='inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded no-underline bg-red-500 text-white hover:green-600 py-3 px-4 leading-tight text-xl'
+                      onClick={() => handleDeleteArtist(artist.artistId)}>
+                      Remove this Song!
+                    </button>
+                    {error && <span className="ml-2">Something went wrong...</span>}
+                    {/* Button from bootstrap to tailwind and I left the className */}
+                    <button
+                    className='btn-block'>comment</button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
     </>
   );
 };
