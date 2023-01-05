@@ -89,8 +89,10 @@ const SavedArtists = () => {
                     </button>
                     {error && <span className="ml-2">Something went wrong...</span>}
                     {/* Button from bootstrap to tailwind and I left the className */}
+                    <br></br>
                     <button
-                    className='btn-block'>comment</button>
+                    className='inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded no-underline bg-red-500 text-white hover:green-600 py-3 px-4 leading-tight text-xl'>
+                      comment</button>
                   </div>
                 </div>
               );
