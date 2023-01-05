@@ -64,6 +64,7 @@ const SignupForm = () => {
   };
 
   return (
+    // Orignally with Bootstrap
     <>
       {/* This is needed for the validation functionality above */}
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
@@ -118,6 +119,76 @@ const SignupForm = () => {
         </Button>
       </Form>
     </>
+    // Convert to Tailwind
+    // <>
+    //   {/* Form from Bootstrap to tailwind */}
+    //   {/* This is needed for the validation functionality above */}
+    //   <form className='mb-4 flex flex-wrap' noValidate validated={validated} onSubmit={handleFormSubmit}>
+    //     {/* show alert if server response is bad */}
+    //     {/* Alert from bootstrap to tailwind */}
+    //     <div className="relative px-3 py-3 mb-4 border rounded bg-red-200 border-red-300 text-red-800" role="alert" dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+    //       Something went wrong with your signup!
+    //     </div>
+
+    //     {/* Form.Group from bootstrap to tailwind */}
+    //     <div className='mb-4'>
+    //       {/* Form.Label from bootstrap to tailwind */}
+    //       <label htmlFor='username'>Username</label>
+    //       {/* Form.Control from bootstrap to tailwind (may have to get the same css from searchMusic file) */}
+    //       <input className='block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded'
+    //         type='text'
+    //         placeholder='Your username'
+    //         name='username'
+    //         onChange={handleInputChange}
+    //         value={userFormData.username}
+    //         required
+    //       />
+    //       {/* Form.Control.Feedback from bootstrap to tailwind (not sure this vaildation works with tailwind) */}
+    //       <div className='hidden mt-1 text-sm text-red-800' type='invalid'>Username is required!</div>
+    //     </div>
+
+    //     {/* Form.Group from bootstrap to tailwind */}
+    //     <div className='mb-4'>
+    //       {/* Form.Label from bootstrap to tailwind */}
+    //       <label htmlFor='email'>Email</label>
+    //       {/* Form.Control from bootstrap to tailwind (may have to get the same css from searchMusic file) */}
+    //       <input className='block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded'
+    //         type='email'
+    //         placeholder='Your email address'
+    //         name='email'
+    //         onChange={handleInputChange}
+    //         value={userFormData.email}
+    //         required
+    //       />
+    //       {/* Form.Control.Feedback from bootstrap to tailwind (not sure this vaildation works with tailwind) */}
+    //       <div className='hidden mt-1 text-sm text-red-800' type='invalid'>Email is required!</div>
+    //     </div>
+
+    //     {/* Form.Group from bootstrap to tailwind */}
+    //     <div className='mb-4'>
+    //       {/* Form.Label from bootstrap to tailwind */}
+    //       <label htmlFor='password'>Password</label>
+    //       {/* Form.Control from bootstrap to tailwind (may have to get the same css from searchMusic file) */}
+    //       <input className='block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded'
+    //         type='password'
+    //         placeholder='Your password'
+    //         name='password'
+    //         onChange={handleInputChange}
+    //         value={userFormData.password}
+    //         required
+    //       />
+    //       {/* Form.Control.Feedback from bootstrap to tailwind (not sure this vaildation works with tailwind) */}
+    //       <div className='hidden mt-1 text-sm text-red-800' type='invalid'>Password is required!</div>
+    //     </div>
+    //     {/* Button from bootstrap to tailwind */}
+    //     <button
+    //       disabled={!(userFormData.username && userFormData.email && userFormData.password)}
+    //       type='submit'
+    //       variant='success'>
+    //       Submit
+    //     </button>
+    //   </form>
+    // </>
   );
 };
 

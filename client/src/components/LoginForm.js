@@ -53,44 +53,94 @@ const LoginForm = () => {
   };
 
   return (
+    // Originally with Bootstrap
     <>
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-        <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-          Something went wrong with your login credentials!
-        </Alert>
-        <Form.Group>
-          <Form.Label htmlFor='email'>Email</Form.Label>
-          <Form.Control
-            type='text'
-            placeholder='Your email'
-            name='email'
-            onChange={handleInputChange}
-            value={userFormData.email}
-            required
-          />
-          <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
-        </Form.Group>
+      <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+        Something went wrong with your login credentials!
+      </Alert>
+      <Form.Group>
+        <Form.Label htmlFor='email'>Email</Form.Label>
+        <Form.Control
+          type='text'
+          placeholder='Your email'
+          name='email'
+          onChange={handleInputChange}
+          value={userFormData.email}
+          required
+        />
+        <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
+      </Form.Group>
 
-        <Form.Group>
-          <Form.Label htmlFor='password'>Password</Form.Label>
-          <Form.Control
-            type='password'
-            placeholder='Your password'
-            name='password'
-            onChange={handleInputChange}
-            value={userFormData.password}
-            required
-          />
-          <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
-        </Form.Group>
-        <Button
-          disabled={!(userFormData.email && userFormData.password)}
-          type='submit'
-          variant='success'>
-          Submit
-        </Button>
-      </Form>
-    </>
+      <Form.Group>
+        <Form.Label htmlFor='password'>Password</Form.Label>
+        <Form.Control
+          type='password'
+          placeholder='Your password'
+          name='password'
+          onChange={handleInputChange}
+          value={userFormData.password}
+          required
+        />
+        <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
+      </Form.Group>
+      <Button
+        disabled={!(userFormData.email && userFormData.password)}
+        type='submit'
+        variant='success'>
+        Submit
+      </Button>
+    </Form>
+  </>
+    // Convert to Tailwind
+    // <>
+    //   {/* Form from bootstrap to tailwind */}
+    //   <form className='mb-4 flex flex-wrap' noValidate validated={validated} onSubmit={handleFormSubmit}>
+    //     {/* Alert from bootstrap to tailwind */}
+    //     <div className="relative px-3 py-3 mb-4 border rounded bg-red-200 border-red-300 text-red-800" role="alert"dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+    //       Something went wrong with your login credentials!
+    //     </div>
+    //     {/* F-orm.Group from bootstrap to tailwind */}
+    //     <div className='mb-4'>
+    //       {/* Form.Label from bootstrap to tailwind */}
+    //       <label htmlFor='email'>Email</label>
+    //       {/* Form.Control from bootstrap to tailwind */}
+    //       <input className='block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded'
+    //         type='text'
+    //         placeholder='Your email'
+    //         name='email'
+    //         onChange={handleInputChange}
+    //         value={userFormData.email}
+    //         required
+    //       />
+    //       {/* Form.Control.Feedback from bootstrap to tailwind */}
+    //       <div className='block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded' type='invalid'>Email is required!</div>
+    //     </div>
+    //     {/* {/* F-orm.Group from bootstrap to tailwind */}
+    //     <div className="relative px-3 py-3 mb-4 border rounded bg-red-200 border-red-300 text-red-800" role="alert"dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+    //       {/* Form.Label from bootstrap to tailwind */}
+    //       <label htmlFor='password'>Password</label>
+    //       {/* Form.Control from bootstrap to tailwind */}
+    //       <input className='block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded'
+    //         type='password'
+    //         placeholder='Your password'
+    //         name='password'
+    //         onChange={handleInputChange}
+    //         value={userFormData.password}
+    //         required
+    //       />
+    //       {/* Form.Control.Feedback from bootstrap to tailwind */}
+    //       <div className='block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded' type='invalid'>Password is required!</div>
+    //     </div>
+    //     {/* Button from bootstrap to tailwind */}
+    //     <button
+    //       disabled={!(userFormData.email && userFormData.password)}
+    //       type='submit'
+    //       variant='success'>
+    //       Submit
+    //     </button>
+    //   </form>
+    // </>
   );
 };
 
