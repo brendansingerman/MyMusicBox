@@ -16,6 +16,10 @@
 }
 
 .backGround-color {
-    background-color: rgb(245 158 11);
+    background-color: rgb(21 94 117);
 }
 
+nav {
+    color: #fff!important;
+    background-color: rgba(72,187,120,var(--bg-opacity));
+}
