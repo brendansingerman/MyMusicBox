@@ -37,7 +37,7 @@ const SearchArtists = () => {
     try {
      
       const response = await fetch(
-        `https://api.genius.com/search?q=${searchInput}&access_token=${apiKey}`
+        `https://api.genius.com/search?per_page=20&q=${searchInput}&access_token=${apiKey}`
       )
         
 
@@ -223,11 +223,11 @@ const SearchArtists = () => {
                 <div className='relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-gray-300' key={artist.artistId}>
                   {artist.image ? (
                     // Card.Img from bootstrap to tailwind
-                    <div className='max-w-full h-auto'
+                    <img className='max-w-full h-auto'
                       src={artist.image}
-                      alt={`The image for ${artist}`}
+                      alt={` ${artist}`}
                       variant="top">
-                    </div>
+                    </img>
                   ) : null}
                   {/* Card.Body from bootstrap to tailwind */}
                   <div className='flex-auto p-6'>
