@@ -5,6 +5,8 @@
   ## Description
   This app utilizes the Genius API to search songs that a user can like and add to their liked music page.
 
+  Heroku link: https://my-music-box-app.herokuapp.com/
+
   ## Table of Content
    - [Project Description](#description)
    - [Installation](#installation)
