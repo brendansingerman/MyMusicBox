@@ -7,7 +7,7 @@ import Navbar from './components/Navbar';
 // import Apollo Provider to work with Apollo Server
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-console.log(process.env.REACT_APP_GENIUS_API_KEY)
+console.log(process.env.REACT_APP_APIKEY)
 const httpLink = createHttpLink({
   uri: '/graphql',
 });

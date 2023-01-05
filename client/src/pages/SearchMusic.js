@@ -97,6 +97,7 @@ const SearchArtists = () => {
 
   return (
     <>
+    {/* ----------------------------------------------------------------------SEARCH FOR MUSIC HERE -------------------------------------------------------------------- */}
       {/* Tailwind version of bootstrap jumbotron */}
       <div className="py-8 px-4 md:py-16 md:px-8 mb-8 bg-gray-200 pr-0 pl-0 rounded-none backGround-color text-light">
         {/* Bootstrap Container to tailwind */}
@@ -114,6 +115,36 @@ const SearchArtists = () => {
                   type="text"
                   size="lg"
                   placeholder="Search an artist"
+                />
+              </div>
+              {/* Col from bootstap to tailwind */}
+              <div className='relative flex-grow max-w-full flex-1 px-4'>
+                {/* Button from bootstrap to tailwind */}
+                <button className='inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded  no-underline bg-green-500 text-white hover:green-600 py-3 px-4 leading-tight text-xl' type="submit" variant="success" size="lg">
+                  Submit Search
+                </button>
+              </div>
+          </form>
+        </div>
+      </div>
+{/* ----------------------------------------------------------------------SEARCH FOR USER ACCOUNT HERE -------------------------------------------------------------------- */}
+      {/* Tailwind version of bootstrap jumbotron */}
+      <div className="py-8 px-4 md:py-16 md:px-8 mb-8 bg-gray-200 rounded pr-0 pl-0 rounded-none backGround-color text-light">
+        {/* Bootstrap Container to tailwind */}
+        <div className='container mx-auto sm:px-4'>
+          <h1 className='text-4xl'>Search a user's account!</h1>
+          {/* Form from bootstrap to tailwind */}
+          <form className='mb-4 flex flex-wrap' onSubmit={handleFormSubmit}>
+              {/* Form.Row with Col from bootstrap to tailwind */}
+              <div className='relative flex-grow max-w-full flex-1'>
+                {/* Form.Control from bootstrap to tailwind */}
+                <input className='w-full rounded-lg h-full px-3 text-dark'
+                  name="searchAccount"
+                  value={""}
+                  onChange={(e) => setSearchInput(e.target.value)}
+                  type="text"
+                  size="lg"
+                  placeholder="Search a username"
                 />
               </div>
               {/* Col from bootstap to tailwind */}
