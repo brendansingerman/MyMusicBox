@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { saveArtistIds, getSavedArtistIds } from '../utils/localStorage';
 // import Apollo hook and mutation
@@ -100,7 +99,7 @@ const SearchArtists = () => {
     <>
     {/* ----------------------------------------------------------------------SEARCH FOR MUSIC HERE -------------------------------------------------------------------- */}
       {/* Tailwind version of bootstrap jumbotron */}
-      <div className="py-8 px-4 md:py-16 md:px-8 mb-8 bg-gray-200 rounded pr-0 pl-0 rounded-none backGround-color text-light">
+      <div className="py-8 px-4 md:py-16 md:px-8 mb-8 bg-gray-200 pr-0 pl-0 rounded-none backGround-color text-light">
         {/* Bootstrap Container to tailwind */}
         <div className='container mx-auto sm:px-4'>
           <h1 className='text-4xl'>Search for Music!</h1>
@@ -160,7 +159,7 @@ const SearchArtists = () => {
       </div>
 
       {/* Container from bootstrap to tailwind */}
-      <div className='container mx-auto sm:px-4'>
+      <div className='container mx-auto sm:px-4 flex-direction'>
         <h2>
        
           {searchedArtists
@@ -172,11 +171,11 @@ const SearchArtists = () => {
         {/* Card Columns from bootstrap to tailwind */}
         <div className='flex flex-wrap'>
           {/* Card Col from bootstrap to tailwind */}
-          <div className='sm:w-1/2 pr-4 pl-4'>
+          <div className='pr-4 pl-4 flex flex-wrap flex-row p-0'>
             {searchedArtists.map((artist) => {
               return (
                 // Card from bootrap to tailwind
-                <div className='relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-gray-300' key={artist.artistId}>
+                <div className='relative flex flex-col min-w-0 rounded break-words border backGround-color text-white px-3 py-3 border-1 border-gray-300' key={artist.artistId}>
                   {artist.image ? (
                     // Card.Img from bootstrap to tailwind
                     <img className='max-w-full h-auto'

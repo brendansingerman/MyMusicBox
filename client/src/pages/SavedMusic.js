@@ -41,51 +41,9 @@ const SavedArtists = () => {
 
 
   return (
-    // Orginally with Bootstrap
-    // <>
-    //   <Jumbotron fluid className='text-light bg-dark'>
-    //     <Container>
-    //       <h1>Viewing {userData.username}'s artists!</h1>
-    //     </Container>
-    //   </Jumbotron>
-    //   <Container>
-    //     <h2>
-    //       {userData.likedArtists?.length
-    //         ? `Viewing ${userData.likedArtists.length} saved ${
-    //             userData.likedArtists.length === 1 ? 'artist' : 'artists'
-    //           }:`
-    //         : 'You have no liked music!'}
-    //     </h2>
-    //     <CardColumns>
-    //       {userData.likedArtists?.map((artist) => {
-    //         return (
-    //           <Card key={artist.artistId} border='dark'>
-    //             {artist.image ? (
-    //               <Card.Img src={artist.image} alt={`The name for ${artist.name}`} variant='top' />
-    //             ) : null}
-    //             <Card.Body>
-    //               <Card.Title>{artist.name}</Card.Title>
-    //               <p className='small'>{artist.song}</p>
-    //               <Card.Text>{artist.year}</Card.Text>
-    //               <Button
-    //                 className='btn-block btn-danger'
-    //                 onClick={() => handleDeleteArtist(artist.artistId)}>
-    //                 Remove this Song!
-    //               </Button>
-    //               {error && <span className="ml-2">Something went wrong...</span>}
-    //               <Button
-    //               className='btn-block'>comment</Button>
-    //             </Card.Body>
-    //           </Card>
-    //         );
-    //       })}
-    //     </CardColumns>
-    //   </Container>
-    // </>
-    // Convert to Tailwind
     <>
       {/* Jumbotron from bootstrap to tailwind */}
-      <div className="py-8 px-4 md:py-16 md:px-8 mb-8 bg-gray-200 rounded pr-0 pl-0 rounded-none backGround-color text-light">
+      <div className="py-8 px-4 md:py-16 md:px-8 mb-8 bg-gray-200 pr-0 pl-0 rounded-none backGround-color text-light">
         {/* Container from bootstrap to tailwind */}
         <div className='container mx-auto sm:px-4'>
           <h1>Viewing {userData.username}'s artists!</h1>
@@ -103,14 +61,18 @@ const SavedArtists = () => {
         {/* CardColumns from bootstrap to tailwind */}
         <div className='flex flex-wrap'>
           {/* Card Col from bootstrap to tailwind */}
-          <div className='sm:w-1/2 pr-4 pl-4'>
+          <div className='flex flex-wrap flex-row pr-4 pl-4'>
             {userData.likedArtists?.map((artist) => {
               return (
                 // Card from bootstrap to tailwind
-                <div className='relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-gray-300' key={artist.artistId}>
+                <div className='relative flex flex-col min-w-0 rounded break-words border backGround-color text-white border-1 border-gray-300 py-3 px-3' key={artist.artistId}>
                   {artist.image ? (
                     // Card.Img from bootstrap to tailwind
-                    <div className='max-w-full h-auto' src={artist.image} alt={`The name for ${artist.name}`} variant='top'> </div>
+                    <img className='max-w-full h-auto' 
+                    src={artist.image} 
+                    alt={` ${artist.name}`} 
+                    variant='top'> 
+                    </img>
                   ) : null}
                   {/* Card.Body from bootstrap to tailwind */}
                   <div className='flex-auto p-6'>
