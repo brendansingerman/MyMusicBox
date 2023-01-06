@@ -46,7 +46,7 @@ const SavedArtists = () => {
       <div className="py-8 px-4 md:py-16 md:px-8 mb-8 bg-gray-200 pr-0 pl-0 rounded-none backGround-color text-light">
         {/* Container from bootstrap to tailwind */}
         <div className='container mx-auto sm:px-4'>
-          <h1>Viewing {userData.username}'s artists!</h1>
+          <h1>Viewing {userData.username}'s liked songs!</h1>
         </div>
       </div>
       {/* Container from bootstrap to tailwind */}
@@ -54,7 +54,7 @@ const SavedArtists = () => {
         <h2>
           {userData.likedArtists?.length
             ? `Viewing ${userData.likedArtists.length} saved ${
-                userData.likedArtists.length === 1 ? 'artist' : 'artists'
+                userData.likedArtists.length === 1 ? 'song' : 'songs'
               }:`
             : 'You have no liked music!'}
         </h2>
