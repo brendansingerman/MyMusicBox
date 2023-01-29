@@ -32,4 +32,4 @@
 
   ## Questions
 
-  If you have questions about this project contact 
+  If you have questions about this project contact Zac Fisher at zcfshr@gmail.com my GitHub is at https://github.com/zacfisher1990
