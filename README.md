@@ -3,7 +3,7 @@
   [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 
   ## Description
-  This app utilizes the Genius API to search songs that a user can like and add to their liked music page.
+  My Music Box is a MERN stack web application. The application allows the user to make a personal list of liked music they can add comments to, and search other users to see what songs they like and what comments they have on their liked songs. The user can create an account by clicking the "sign up" link. By being signed in the user can then "like" a song after searching an artist. The "liked" song will be saved to the user's peronsal "liked music" page. Within the user's "liked music" page the user has the ability to add comments to their list of songs. 
 
   Heroku link: https://my-music-box-app.herokuapp.com/
 
@@ -19,7 +19,7 @@
   Run 'npm install'
 
   ## Usage
-  Install the npm packages then run "npm run develop"
+  Install the npm packages then run 'npm run develop'
 
   ## License
   This project is under the ISC license.
